@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-
+import {StyledList} from '../../config/theme';
 // xsrfCookieName: "XSRF-TOKEN"
 // xsrfHeaderName: "X-XSRF-TOKEN"
+
 const League = () => {
   const [leagueList, setLigueList] = useState([])
   useEffect(async () => {
@@ -25,14 +26,15 @@ const League = () => {
       })
   }, [])
   return (
-    <ul>
+    <StyledList>
       {leagueList.map(item => (
         <li key={item.league_id}>
           <Link to={`/classement/${item.league_id}`}>{item.name}</Link>
-          <img src={item.logo}></img>
+          <img src={item.logo}/>
+          <button> Vers Ligue </button>
         </li>
       ))}
-    </ul>
+    </StyledList>
   )
 }
 

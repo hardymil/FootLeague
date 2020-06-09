@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import {StyledList} from '../config/theme';
 
 const Classement = props => {
   console.log('Classement -> props', props)
@@ -45,10 +46,10 @@ const Classement = props => {
     }
   }
   return (
-    <ul>
+    <StyledList>
       <p>classement</p>
       {classementList.map(item => (
-        <div key={item.team_id}>
+        <li key={item.team_id}>
           <p>{item.rank}</p>
           <p>{item.teamName}</p>
           <img src={item.logo}></img>
@@ -59,9 +60,9 @@ const Classement = props => {
           >
             add to favorite
           </button>
-        </div>
+        </li>
       ))}
-    </ul>
+    </StyledList>
   )
 }
 
