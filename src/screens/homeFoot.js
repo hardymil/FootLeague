@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
+import League from '../components/league'
+import Favo from '../components/favo'
 
 const HomeFoot = () => {
   const [favo, setFavo] = useState(JSON.parse(localStorage.getItem('favorite')))
-  useEffect(() => {
-    console.log('Favorite -> favo', favo)
-  })
+
   return (
     <div>
-      <p>HomeFoot</p>
+      <p>Home Foot</p>
+      <Favo></Favo>
+      <p>Ligue</p>
+      <League></League>
     </div>
   )
 }

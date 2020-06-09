@@ -17,7 +17,7 @@ const Classement = props => {
     })
       .then(res => {
         console.log(res.data.api.standings)
-        setClassementList(res.data.api.standings[0])
+        setClassementList(res.data.api.standings)
       })
       .catch(err => {
         console.log(err)
@@ -47,20 +47,28 @@ const Classement = props => {
   return (
     <ul>
       <p>classement</p>
-      {classementList.map(item => (
-        <div key={item.team_id}>
-          <p>{item.rank}</p>
-          <p>{item.teamName}</p>
-          <img src={item.logo}></img>
-          <button
-            onClick={() =>
-              handleFavorite({ id: item.team_id, name: item.teamName })
-            }
-          >
-            add to favorite
-          </button>
-        </div>
-      ))}
+      <div>
+        {classementList.map(cl =>
+          cl.map(item => (
+            <div key={item.team_id}>
+              <p>{item.rank}</p>
+              <p>{item.teamName}</p>
+              <img src={item.logo}></img>
+              <button
+                onClick={() =>
+                  handleFavorite({
+                    id: item.team_id,
+                    name: item.teamName,
+                    league_id: props.match.params.id
+                  })
+                }
+              >
+                add to favorite
+              </button>
+            </div>
+          ))
+        )}
+      </div>
     </ul>
   )
 }
