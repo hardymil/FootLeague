@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Pagination from '../pagination'
+import { StyledList } from '../../config/theme'
 
 const League = () => {
   const valueOffset = 20
@@ -36,21 +37,19 @@ const League = () => {
   }, [leagueList, currentPage])
 
   return (
-    <div>
-      <ul>
-        {tabLeague.map(item => (
-          <li key={item.league_id}>
-            <Link to={`/classement/${item.league_id}`}>{item.name}</Link>
-            <img src={item.logo}></img>
-          </li>
-        ))}
-      </ul>
+    <StyledList>
+      {tabLeague.map(item => (
+        <li key={item.league_id}>
+          <Link to={`/classement/${item.league_id}`}>{item.name}</Link>
+          <img src={item.logo} />
+        </li>
+      ))}
       <Pagination
         total={total}
         setCurrentPage={setCurrentPage}
         valueOffset={valueOffset}
       ></Pagination>
-    </div>
+    </StyledList>
   )
 }
 

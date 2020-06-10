@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { StyledList } from '../config/theme'
 
 const Classement = props => {
   console.log('Classement -> props', props)
@@ -17,7 +18,7 @@ const Classement = props => {
     })
       .then(res => {
         console.log(res.data.api.standings)
-        setClassementList(res.data.api.standings)
+        setClassementList(res.data.api.standings[0])
       })
       .catch(err => {
         console.log(err)
@@ -45,31 +46,23 @@ const Classement = props => {
     }
   }
   return (
-    <ul>
+    <StyledList>
       <p>classement</p>
-      <div>
-        {classementList.map(cl =>
-          cl.map(item => (
-            <div key={item.team_id}>
-              <p>{item.rank}</p>
-              <p>{item.teamName}</p>
-              <img src={item.logo}></img>
-              <button
-                onClick={() =>
-                  handleFavorite({
-                    id: item.team_id,
-                    name: item.teamName,
-                    league_id: props.match.params.id
-                  })
-                }
-              >
-                add to favorite
-              </button>
-            </div>
-          ))
-        )}
-      </div>
-    </ul>
+      {classementList.map(item => (
+        <li key={item.team_id}>
+          <p>{item.rank}</p>
+          <p>{item.teamName}</p>
+          <img src={item.logo}></img>
+          <button
+            onClick={() =>
+              handleFavorite({ id: item.team_id, name: item.teamName })
+            }
+          >
+            add to favorite
+          </button>
+        </li>
+      ))}
+    </StyledList>
   )
 }
 

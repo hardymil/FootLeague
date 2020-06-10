@@ -8,9 +8,9 @@ const HomeFoot = () => {
   return (
     <div>
       <p>Home Foot</p>
-      <Favo></Favo>
+      <Favo />
       <p>Ligue</p>
-      <League></League>
+      <League />
     </div>
   )
 }

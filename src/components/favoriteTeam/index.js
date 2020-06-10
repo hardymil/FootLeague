@@ -26,7 +26,7 @@ const FavoriteTeam = props => {
   }, [])
   return (
     <div>
-      <p>Teamr</p>
+      <p>Team</p>
     </div>
   )
 }
